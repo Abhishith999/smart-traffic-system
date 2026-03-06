@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignalFlow Vizag - Smart Traffic Alert</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">⚡ SignalFlow <span>Vizag</span></div>
+            <button class="refresh-btn" onclick="initializeTracking()">🔄 Refresh</button>
+        </header>
+
+        <section class="journey-planner">
+            <h3>📍 Plan Your Journey</h3>
+            <div class="input-group">
+                <select id="startNode">
+                    <option value="" disabled selected>START LOCATION</option>
+                    </select>
+                <span class="arrow">→</span>
+                <select id="endNode">
+                    <option value="" disabled selected>DESTINATION</option>
+                </select>
+                <button onclick="initializeTracking()" class="route-btn">Get Route</button>
+            </div>
+        </section>
+
+        <section id="travelSummary" class="summary-card" style="display: none;">
+            <div class="eta-large">
+                <span id="totalMins">0</span> <small>min</small>
+            </div>
+            <div class="stats">
+                <p id="totalDistance">Distance: 0 km</p>
+                <p id="junctionCount">0 Junctions</p>
+            </div>
+        </section>
+
+        <div id="timelineContainer" class="timeline">
+            </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

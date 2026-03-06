@@ -1,0 +1,80 @@
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --accent: #6366f1;
+    --text-main: #f8fafc;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.app-container { width: 100%; max-width: 800px; }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; }
+.logo span { color: var(--accent); }
+
+.journey-planner {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.input-group { display: flex; gap: 15px; align-items: center; }
+
+select {
+    flex: 1;
+    padding: 12px;
+    background: #0f172a;
+    color: white;
+    border: 1px solid #334155;
+    border-radius: 8px;
+}
+
+.route-btn {
+    background: var(--accent);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.summary-card {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.eta-large { font-size: 4rem; font-weight: 800; }
+
+.signal-card {
+    background: var(--card-bg);
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-header { display: flex; justify-content: space-between; align-items: center; }
+.card-body { display: flex; gap: 30px; margin-top: 15px; }
+.stat strong { font-size: 1.2rem; }
+.badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
