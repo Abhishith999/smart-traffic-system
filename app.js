@@ -31,7 +31,7 @@ function initializeTracking() {
     renderRoute(start, end);
     // Algorithm 1 & 4: Refresh every 5 seconds [cite: 148, 176]
     if (window.trafficInterval) clearInterval(window.trafficInterval);
-    window.trafficInterval = setInterval(() => renderRoute(start, end), 5000);
+    window.trafficInterval = setInterval(() => renderRoute(start, end), 10000);
 }
 
 function renderRoute(s, e) {
