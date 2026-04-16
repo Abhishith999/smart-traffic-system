@@ -10,14 +10,16 @@ const junctionData = [
     { name: "RTC Complex", dist: 26.3 }
 ];
 
-// Populate Dropdowns
+// Populate Dropdowns safely
 const startSelect = document.getElementById('startNode');
 const endSelect = document.getElementById('endNode');
 
-junctionData.forEach((j, index) => {
-    startSelect.options.add(new Option(j.name, index));
-    endSelect.options.add(new Option(j.name, index));
-});
+if (startSelect && endSelect) {
+    junctionData.forEach((j, index) => {
+        startSelect.options.add(new Option(j.name, index));
+        endSelect.options.add(new Option(j.name, index));
+    });
+}
 
 function initializeTracking() {
     const start = parseInt(startSelect.value);
@@ -29,22 +31,25 @@ function initializeTracking() {
     }
 
     renderRoute(start, end);
-    // Algorithm 1 & 4: Refresh every 5 seconds [cite: 148, 176]
+    // Refresh every 10 seconds 
     if (window.trafficInterval) clearInterval(window.trafficInterval);
     window.trafficInterval = setInterval(() => renderRoute(start, end), 10000);
 }
+
+// Make function globally available if called from inline HTML onClick
+window.initializeTracking = initializeTracking;
 
 function renderRoute(s, e) {
     const container = document.getElementById('timelineContainer');
     const summary = document.getElementById('travelSummary');
     container.innerHTML = "";
-    summary.style.display = "block";
+    summary.style.display = "flex"; // Changed from block to flex to fix layout alignment
 
     let cumulativeETA = 0;
     const totalDist = (junctionData[e].dist - junctionData[s].dist).toFixed(1);
 
     for (let i = s; i <= e; i++) {
-        // Algorithm 3: Random Density Simulation [cite: 162]
+        // Random Density Simulation
         const vehicles = Math.floor(Math.random() * 45) + 5;
         const waitTime = (vehicles * 0.15).toFixed(1); // Simulated logic
         cumulativeETA += parseFloat(waitTime);
@@ -62,7 +67,9 @@ function renderRoute(s, e) {
                     <div class="stat">🕒 WAIT TIME <br> <strong>${waitTime} min</strong></div>
                     <div class="stat">🚗 VEHICLES <br> <strong>${vehicles} vol</strong></div>
                 </div>
-                <p class="advice">${vehicles > 30 ? 'Expect heavy delays.' : 'Smooth flow detected.'}</p>
+                <p class="advice" style="margin-top: 10px; font-size: 0.9em; color: #94a3b8;">
+                    ${vehicles > 30 ? 'Expect heavy delays.' : 'Smooth flow detected.'}
+                </p>
             </div>
         `;
     }

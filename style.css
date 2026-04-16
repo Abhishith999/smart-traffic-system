@@ -12,6 +12,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 20px;
+    margin: 0;
 }
 
 .app-container { width: 100%; max-width: 800px; }
@@ -26,11 +27,30 @@ header {
 .logo { font-size: 1.5rem; font-weight: bold; }
 .logo span { color: var(--accent); }
 
+.refresh-btn {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid #334155;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.refresh-btn:hover {
+    background: #334155;
+}
+
 .journey-planner {
     background: var(--card-bg);
     padding: 25px;
     border-radius: 16px;
     margin-bottom: 20px;
+}
+
+.journey-planner h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
 }
 
 .input-group { display: flex; gap: 15px; align-items: center; }
@@ -42,6 +62,7 @@ select {
     color: white;
     border: 1px solid #334155;
     border-radius: 8px;
+    outline: none;
 }
 
 .route-btn {
@@ -52,7 +73,10 @@ select {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    transition: background 0.2s;
 }
+
+.route-btn:hover { background: #4f46e5; }
 
 .summary-card {
     background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
@@ -65,6 +89,9 @@ select {
 }
 
 .eta-large { font-size: 4rem; font-weight: 800; }
+.eta-large small { font-size: 1.5rem; font-weight: normal; }
+
+.stats p { margin: 5px 0; color: #c7d2fe; }
 
 .signal-card {
     background: var(--card-bg);
@@ -75,6 +102,8 @@ select {
 }
 
 .card-header { display: flex; justify-content: space-between; align-items: center; }
+.card-header h4 { margin: 0; }
 .card-body { display: flex; gap: 30px; margin-top: 15px; }
-.stat strong { font-size: 1.2rem; }
+.stat { font-size: 0.9rem; color: #94a3b8; }
+.stat strong { font-size: 1.2rem; color: var(--text-main); }
 .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
