@@ -9,7 +9,10 @@
     <div class="app-container">
         <header>
             <div class="logo">⚡ SignalFlow <span>Vizag</span></div>
-            <button class="refresh-btn" onclick="initializeTracking()">🔄 Refresh</button>
+            <div style="display: flex; gap: 10px;">
+                <button class="refresh-btn" onclick="initializeTracking()">🔄 Refresh</button>
+                <button id="logoutBtn" class="refresh-btn" style="border-color: #ef4444; color: #ef4444;">🚪 Log Out</button>
+            </div>
         </header>
 
         <section class="journey-planner">
@@ -39,6 +42,46 @@
         <div id="timelineContainer" class="timeline">
         </div>
     </div>
+    
     <script src="app.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      
+        const firebaseConfig = {
+            apiKey: "AIzaSyDaNMLLNcgv8NZPwBCjpIswrnpK-2UQNOg",
+            authDomain: "smart-traffic-alert-syst-83b60.firebaseapp.com",
+            projectId: "smart-traffic-alert-syst-83b60",
+            storageBucket: "smart-traffic-alert-syst-83b60.firebasestorage.app",
+            messagingSenderId: "887235933482",
+            appId: "1:887235933482:web:979a5496481cc69afe9a53",
+            measurementId: "G-4Q20VGGBLH"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+      
+        // 1. Check if user is logged in
+        onAuthStateChanged(auth, (user) => {
+          if (!user) {
+            // If nobody is logged in, redirect to login page immediately
+            window.location.href = "login.html";
+          }
+        });
+
+        // 2. Handle Logout
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    // Sign-out successful, the observer above will trigger and redirect
+                    console.log("Logged out successfully");
+                }).catch((error) => {
+                    alert("Error logging out: " + error.message);
+                });
+            });
+        }
+      </script>
 </body>
 </html>
