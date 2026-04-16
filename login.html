@@ -30,7 +30,7 @@
         <div class="auth-footer" style="margin-top: 1.5rem; text-align: center; font-family: sans-serif;">
             <p style="color: #94a3b8; font-size: 0.875rem; margin: 0;">
                 Don't have an account? 
-                <a href="register.html" style="color: #6366f1; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='#818cf8'" onmouseout="this.style.color='#6366f1'">
+                <a href="/register.html" style="color: #6366f1; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='#818cf8'" onmouseout="this.style.color='#6366f1'">
                     Register
                 </a>
             </p>
@@ -39,7 +39,6 @@
 </div>
 
 <script type="module">
-  // Fixed invalid 10.x.x version to match auth.js
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -67,7 +66,8 @@
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           alert("Login successful! Welcome to SignalFlow.");
-          window.location.href = "index.html"; 
+          // Fixed Vercel routing path here!
+          window.location.href = "/"; 
         })
         .catch((error) => {
           alert("Error: " + error.message);
